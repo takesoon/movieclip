@@ -1,0 +1,111 @@
+namespace MovieClipFlat;
+
+struct ColorMatrix
+{
+   brightness:int;
+   contrast:int;
+   saturation:int;
+   hue:int; 
+}
+
+struct ActionColorTransform
+{
+    r:float;
+    g:float;
+    b:float;
+    a:float;
+    offr:int;
+    offg:int;
+    offb:int;
+    offa:int;
+    colorMatrix:ColorMatrix;
+    visible:int;
+    blend:int;
+    graphic:int;
+    loop:int;
+    first:int;
+}
+
+table ActionTween
+{
+    rotate:int;
+    times:int;
+    transformPoint:string;
+    ease:string;
+}
+
+table Frame
+{
+    frameIndex:int;
+    insName:string;
+    libName:string;
+    sourceName:string;
+    pos:string;
+    colorTrans:ActionColorTransform;
+    tween:ActionTween;
+    skew:string;
+    scale:string;
+}
+
+
+table Layer {
+    keysFrames:[Frame];
+    keyFrameCount:int;
+    frameCount:int;
+    mask:int;
+    maskDepth:int;
+
+}
+
+table ScriptDict
+{
+    source:string;
+    lang:string;
+    trigger:string;
+}
+
+table LabelDict
+{
+    source:string;
+}
+
+table ElementType1
+{
+    type:int;
+    frameRate:int;
+    layerCount:int;
+    frameCount:int;
+    layers:[Layer];
+    labelDict:[LabelDict];
+    scriptDict:[ScriptDict];
+}
+
+table ElementType2
+{
+    type:int;
+    pos:string;
+    insName:string;
+    sourceName:string;
+}
+
+table Element 
+{
+ eletype1:ElementType1;
+ eletype2:ElementType2;
+}
+
+
+table FileHead {
+    pix:int;
+    filename:string;
+    fileUpdateTime:string;
+    fileVersion:string;
+}
+
+table MovieClip
+{
+    fileInfo:FileHead;  
+    elements:[Element];
+}
+
+root_type MovieClip;
